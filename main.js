@@ -2,6 +2,7 @@ const form = document.getElementById("form-itens"); //form>input+button
 const itensInput = document.getElementById("receber-item"); //input
 const ulItens = document.getElementById("lista-de-itens"); //"lista de compras"
 const ulItensComprados = document.getElementById("itens-comprados");//"comprados" (checked)
+const listaRecuperada = localStorage.getItem('listaDeItens'); //dados do localStorage
 
 let listaDeItens = []
 
@@ -10,6 +11,14 @@ let itemAEditar
 //GUARDAR ITENS NO LOCAL STORAGE
 function atualizaLocalStorage(){
     localStorage.setItem('listaDeItens', JSON.stringify(listaDeItens));
+}
+
+// RENDERIZAR DADOS DO LOCAL STORAGE
+if (listaRecuperada) { //Se houver dados no localStorage (true)
+    listaDeItens = JSON.parse(listaRecuperada); //Converte os dados de string para objeto
+    mostrarItem();
+} else { //Se não houver dados no localStorage (false)
+    listaDeItens = []; //Cria uma lista vazia
 }
 
 // AO CLICAR NO BOTÃO "SALVAR ITEM" DO FORMULÁRIO
