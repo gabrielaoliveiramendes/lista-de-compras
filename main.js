@@ -7,6 +7,11 @@ let listaDeItens = []
 
 let itemAEditar
 
+//GUARDAR ITENS NO LOCAL STORAGE
+function atualizaLocalStorage(){
+    localStorage.setItem('listaDeItens', JSON.stringify(listaDeItens));
+}
+
 // AO CLICAR NO BOTÃO "SALVAR ITEM" DO FORMULÁRIO
 form.addEventListener("submit", function (event) {
     event.preventDefault(); // evitar que o formulário recarregue a página ao ser enviado
@@ -104,6 +109,10 @@ function mostrarItem() {
             mostrarItem(); //Renderiza novamente a lista com o item atualizado que foi editado
         })
     });
+
+//ARMAZENAR DADOS NO LOCAL STORAGE
+    atualizaLocalStorage();
+
 }
 
 // SALVAR ITEM EDITADO
